@@ -9,15 +9,9 @@ namespace A6_MediaLibrary.Models
         public int episode {get; set;}
         public string[] writers {get; set;}
 
-        public override void display()
+        public override string displayConfirmation()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void addMedia()
-        {
-            throw new NotImplementedException();
+            return String.Format($"Show:\nID: {ID}\nTitle: {Title}\nSeason: {season}\nEpisode: {episode}\nWriters: {String.Join(",", writers)}");
         }
     }
-
 }

@@ -213,7 +213,5 @@ namespace A6_MediaLibrary.Data
             Console.Clear();
             Console.WriteLine("Media added Successfully!");
         }
-
     }
-
 }

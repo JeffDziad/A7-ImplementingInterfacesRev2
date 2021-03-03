@@ -10,10 +10,6 @@ namespace A6_MediaLibrary.Models
         public int ID {get; set;}
         public string Title {get; set;}
 
-        public abstract void display();
-
-        public abstract void addMedia();
-
+        public abstract string displayConfirmation();
     }
-
 }

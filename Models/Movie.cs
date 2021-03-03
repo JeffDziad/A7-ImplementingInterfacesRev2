@@ -8,15 +8,9 @@ namespace A6_MediaLibrary.Models
     {
         public string[] genres {get; set;}
 
-        public override void display()
+        public override string displayConfirmation()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void addMedia()
-        {
-            throw new NotImplementedException();
+            return String.Format($"Movie:\nID: {ID}\nTitle: {Title}\nGenres: {String.Join(",", genres)}");
         }
     }
-
 }

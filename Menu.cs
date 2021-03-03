@@ -48,7 +48,6 @@ namespace A6_MediaLibrary
                     Console.Clear();
                     Log.log($"{input} is not a valid menu option.", new FormatException());
                     break;
-                
             }
         }
 
@@ -68,22 +67,58 @@ namespace A6_MediaLibrary
                 {
                     case 1:
                         Console.Clear();
-                        MediaManager.printMovies();
+                        displayMedia(1);
                         break;
                     case 2:
                         Console.Clear();
-                        MediaManager.printShows();
+                        displayMedia(2);
                         break;
                     case 3:
                         Console.Clear();
-                        MediaManager.printVideos();
+                        displayMedia(3);
                         break;
                     case 4:
                         Console.Clear();
                         break;
                     default:
                         Console.Clear();
-                        Log.log($"\"{userInputInt} is not a valid menu option.\"", new FormatException());
+                        Log.log($"\"{userInputInt}\" is not a valid menu option.", new FormatException());
+                        break;
+                }
+            }catch(FormatException fe)
+            {
+                Console.Clear();
+                Log.log($"\"{userInputStr}\" is not a valid menu option.", fe);
+            }
+        }
+
+        public static void displayMedia(int mediaCode)
+        {
+            Console.WriteLine("View Methods:");
+            Console.WriteLine("1. View All");
+            Console.WriteLine("2. Search by ID");
+            Console.WriteLine("3. Return to Main Menu");
+            Console.Write("> ");
+            string userInputStr = Console.ReadLine();
+            try
+            {
+                int userInputInt = Convert.ToInt32(userInputStr);
+                switch(userInputInt)
+                {
+                    case 1:
+                        Console.Clear();
+                        MediaManager.print(mediaCode);
+                        break;
+                    case 2:
+                        Console.Clear();
+                        MediaManager.searchById(mediaCode);
+                        break;
+                    case 3:
+                        Console.Clear();
+                        break;
+                    default:
+                        Console.Clear();
+                        Log.log($"\"{userInputInt}\" is not a valid menu option.", new FormatException());
                         break;
                 }
             }catch(FormatException fe)
@@ -124,7 +159,7 @@ namespace A6_MediaLibrary
                         break;
                     default:
                         Console.Clear();
-                        Log.log($"\"{userInputInt} is not a valid menu option.\"", new FormatException());
+                        Log.log($"\"{userInputInt}\" is not a valid menu option.", new FormatException());
                         break;
                 }
             }catch(FormatException fe)

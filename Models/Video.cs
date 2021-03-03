@@ -9,15 +9,9 @@ namespace A6_MediaLibrary.Models
         public int length {get; set;}
         public int[] regions {get; set;}
 
-        public override void display()
+        public override string displayConfirmation()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void addMedia()
-        {
-            throw new NotImplementedException();
+            return String.Format($"Video:\nID: {ID}\nTitle: {Title}\nFormats: {format.Replace("|", ",")}\nLength: {length}min.\nRegions: {String.Join(",", regions)}");
         }
     }
-
 }
