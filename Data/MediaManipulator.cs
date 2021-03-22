@@ -1,15 +1,18 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using A6_MediaLibrary.Models;
+using A7_ImplementingInterfaces.Models;
 
-namespace A6_MediaLibrary.Data
+namespace A7_ImplementingInterfaces.Data
 {
 
     public static class MediaManipulator
     {
+        private static int moviesCurrentLineNum = Menu.getBaseRepositoryLineNum(1) + 1;
+        private static int showsCurrentLineNum = Menu.getBaseRepositoryLineNum(2) + 1;
+        private static int videosCurrentLineNum = Menu.getBaseRepositoryLineNum(3) + 1;
 
-        public static void createMovie()
+        public static List<string> createMovie()
         {
             Console.Write("Enter Movie Title: ");
             string movieTitle = Console.ReadLine();
@@ -46,13 +49,14 @@ namespace A6_MediaLibrary.Data
                 }
             }while(!finishGenres);
             List<string> movieToAdd = new List<string>();
-            movieToAdd.Add((MediaManager.getLineNum("movie") + 1).ToString());
+            movieToAdd.Add(moviesCurrentLineNum.ToString());
+            moviesCurrentLineNum++;
             movieToAdd.Add(movieTitle);
             movieToAdd.Add(String.Join("|", movieGenres.ToArray()));
-            addMedia(movieToAdd, MediaManager.getPath("movie"));
+            return movieToAdd;
         }
 
-        public static void createShow()
+        public static List<string> createShow()
         {
             Console.Write("Enter Show Title: ");
             string showTitle = Console.ReadLine();
@@ -109,15 +113,16 @@ namespace A6_MediaLibrary.Data
                 }
             }while(!finishWriters);
             List<string> showToAdd = new List<string>();
-            showToAdd.Add((MediaManager.getLineNum("show") + 1).ToString());
+            showToAdd.Add(showsCurrentLineNum.ToString());
+            showsCurrentLineNum++;
             showToAdd.Add(showTitle);
             showToAdd.Add(showSeasonStr);
             showToAdd.Add(showEpisodeStr);
             showToAdd.Add(String.Join("|", showWriters.ToArray()));
-            addMedia(showToAdd, MediaManager.getPath("show"));
+            return showToAdd;
         }
 
-        public static void createVideo()
+        public static List<string> createVideo()
         {
             Console.Write("Enter Video Title: ");
             string videoTitle = Console.ReadLine();
@@ -131,7 +136,7 @@ namespace A6_MediaLibrary.Data
             {
                 Console.Clear();
                 Log.log($"{videoYearStr} is not a valid number! Try again...", fe);
-                createShow();
+                createVideo();
             }
             if(videoTitle.Contains(","))
             {
@@ -187,31 +192,13 @@ namespace A6_MediaLibrary.Data
                 }
             }while(!finishedRegions);
             List<string> videoToAdd = new List<string>();
-            videoToAdd.Add((MediaManager.getLineNum("video") + 1).ToString());
+            videoToAdd.Add(videosCurrentLineNum.ToString());
+            videosCurrentLineNum++;
             videoToAdd.Add(videoTitle);
             videoToAdd.Add(String.Join("|", videoFormats.ToArray()));
             videoToAdd.Add(videoLengthStr);
             videoToAdd.Add(String.Join("|", videoRegions.ToArray()));
-            addMedia(videoToAdd, MediaManager.getPath("video"));
-        }
-
-        public static void addMedia(List<string> media, string path)
-        {
-            try
-            {
-                using(StreamWriter sw = new StreamWriter(path, true))
-                {
-                    string output = String.Join(",", media.ToArray());
-                    sw.WriteLine(output);
-                    sw.Close();
-                }
-            }catch(FileNotFoundException fnfe)
-            {
-                Console.Clear();
-                Log.log($"Something went wrong when trying to write to the file located at {path}!", fnfe);
-            }
-            Console.Clear();
-            Console.WriteLine("Media added Successfully!");
+            return videoToAdd;
         }
     }
 }

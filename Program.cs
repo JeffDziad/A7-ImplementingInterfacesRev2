@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace A6_MediaLibrary
+namespace A7_ImplementingInterfaces
 {
     class Program
     {
@@ -8,13 +8,15 @@ namespace A6_MediaLibrary
         {
             Console.Clear();
             Console.WriteLine("---------------------");
-            Console.WriteLine("|  Media Library v2 |");
+            Console.WriteLine("|  Media Library v3 |");
             Console.WriteLine("---------------------");
+            // Repository additions go here
+            Menu.grabRepositories();
             do
             {
-                Menu.runMenu();
+               Menu.runMenu();
             }while(!Menu.endProgram);
-            Console.WriteLine("Thanks for using Media Library v2!");
+            Console.WriteLine("Thanks for using Media Library v3!");
         }
     }
 }

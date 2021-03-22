@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace A6_MediaLibrary.Models
+namespace A7_ImplementingInterfaces.Models
 {
 
     public class Movie : Media

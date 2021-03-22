@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using NLog.Web;
 
-namespace A6_MediaLibrary
+namespace A7_ImplementingInterfaces
 {
     static class Log
     {

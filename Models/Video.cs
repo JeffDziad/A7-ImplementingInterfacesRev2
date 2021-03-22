@@ -1,6 +1,6 @@
 using System;
 
-namespace A6_MediaLibrary.Models
+namespace A7_ImplementingInterfaces.Models
 {
 
     public class Video : Media
